@@ -1,0 +1,426 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[top=1in,textheight=9in]{geometry}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumerate}
+\usepackage{xfrac}
+
+% Everything after a % sign is commented out.
+% This is sometimes useful to write notes to yourself
+% or to add spacing in the tex file so that it is easier
+% to read.
+
+
+% Some useful `macros'
+% % % Feel free to define your own!
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\epsilon}{\eps}
+
+
+\newcommand{\prel}{{\rm prel}}
+
+
+% Here is a pretty way to write down the problem
+\newtheorem{innerprob}{Problem}
+\newenvironment{prob}[1]
+  {\renewcommand\theinnerprob{#1}\innerprob}
+  {\endinnerprob}
+% Here is a pretty way to wrote down the solution
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{}\begin{proof}[Solution]}
+  {\end{proof}\bigskip}
+
+
+
+\setlength\parindent{0cm}
+\setlength\parskip{5pt plus 1pt minus 1pt}
+
+
+
+\title{Assignment \#2\\Math 584A}
+\author{
+	% PUT YOUR NAME HERE
+	}
+\date{Due September 17th, 1 am (via Gradescope)}
+
+
+
+
+
+
+
+
+
+\begin{document}
+
+\maketitle
+
+For uploading to Gradescope, it will be easiest to put each solution on a different page.  The code for this is commented out in the tex file.
+
+% Don't write anything between \begin{document}
+% and \maketitle or it will show up before your name
+% and the rest of the title stuff.
+
+
+
+%State the problem
+%\begin{prob}{PROBLEM #}
+%  WRITE PROBLEM
+%\end{prob}
+
+% Note prob is custom-made above will
+
+
+
+\begin{prob}{1}  % `prob' starts the (custom made, above) problem
+			%  and the 
+Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces that are both subsets of some larger linear space $Z$; that is, $X,Y\subset Z$.  Consider the following potential metrics on $X\cap Y$:
+\begin{enumerate}[(i)]
+	\item $d_p(v_1,v_2) = \left( d_X(v_1,v_2)^p + d_Y(v_1,v_2)^p\right)^\frac{1}{p}$ for a fixed $p\in [1,\infty)$,
+	\item $d_{\max}(v_1,v_2) = \max\left\{ d_X(v_1,v_2), d_Y(v_1,v_2)\right\}$, and
+	\item $d_{\min}(v_1,v_2) = \min\left\{ d_X(v_1,v_2), d_Y(v_1,v_2)\right\}$.
+\end{enumerate}
+Each of these is well-defined in that it is finite for any $v_1,v_2\in X\cap Y$.  Which are metrics?  Give a proof or counterexample for each.
+\end{prob}
+%Uncomment the lines below to solve the problem
+\begin{solution}
+	What follows is a solution to part (i). By construction, $d_p(v_1,v_2)$ can only be zero if both $d_X(v_1,v_2)$ and $d_Y(v_1,v_2)$ are zero, and will be positive if both $d_X(v_1,v_2)$ and $d_Y(v_1,v_2)$. Since both $d_X$ and $d_Y$ are metrics, they satisfy positive definiteness property. Thus, $d_p$ also satisfies positive definiteness.
+	
+	Since both $d_X$ and $d_Y$ are metrics, $$d_X(v_1,v_2) = d_X(v_2,v_1) \quad \text{ and } \quad d_Y(v_1,v_2) = d_Y(v_2,v_1).$$ Therefore, 
+	\[\begin{split}
+		d_p(v_2,v_1) &= \left( d_X(v_2,v_1)^p + d_Y(v_2,v_1)^p\right)^\frac{1}{p}\\
+		&= \left( d_X(v_1,v_2)^p + d_Y(v_1,v_2)^p\right)^\frac{1}{p}\\
+		&= d_p(v_1,v_2).
+	\end{split}\]
+	Thus, $d_p$ satisfies the symmetry property.
+	
+	
+	Using the triangle inequality on the metrics $d_X$ and $d_Y$ yields 
+	\begin{equation}\label{e1}
+	d_p(v_1,v_2) \leq \left ( [d_X(v_1,v_3) + d_X(v_3,v_2)]^p + [d_Y(v_1,v_3) + d_Y(v_3,v_2)]^p \right )^(\sfrac{1}{p}).
+	\end{equation}
+	Using the definition 
+	\[\begin{split}
+		|x|_p = \left(|x_1|^p + \cdots + |x_N|^p\right)^{\sfrac{1}{p}},
+	\end{split}\] notice that for $\bar v = (d_X(v_1, v_2), d_Y(v_1,v_2))$, $$d_p(v_1,v_2) = |\bar z|_p.$$
+	Let vectors $\bar x$ and $\bar y$ be two vectors defined by $$\bar x = (d_X(v_1,v_3), d_Y(v_1,v_3)) \quad \text{ and } \quad \bar y = (d_X(v_3,v_2), d_Y(v_3,v_2)).$$ Applying our definition for $|x|_p$ gives
+	\[\begin{split}
+		|\bar x +\bar y|_p = \left(|x_1 + y_1|^p + |x_2+y_2|^p\right)^{\sfrac{1}{p}}.
+	\end{split}\]
+	Substituting in the values for each vector gives
+	\[\begin{split}
+		|\bar x +\bar y|_p = \left(|d_X(v_1,v_3) + d_X(v_3,v_2)|^p + |d_Y(v_1,v_3)+d_Y(v_3,v_2)|^p\right)^{\sfrac{1}{p}}.
+	\end{split}\]
+	Substituting in with \eqref{e1} gives 
+	\begin{equation}\label{e2}
+	d_p(v_1, v_2) \leq |\bar x +\bar y|_p.
+	\end{equation}
+	Since we proved in a previous homework that $|\cdot|_p$ satisfies the triangle inequality,
+	\[\begin{split}
+		|\bar x +\bar y|_p \leq |\bar x|_p + |\bar y|_p.
+	\end{split}\]
+	Substituting in the values for each vector gives 
+	\[\begin{split}
+		|\bar x +\bar y|_p &\leq |d_X(v_1,v_3) + d_Y(v_1,v_3)|_p + |d_X(v_3,v_2)+ d_Y(v_3,v_2)|_p\\
+		& = d_p(v_1,v_3)^p + d_p(v_3,v_2)^p
+	\end{split}\]
+	Combining with \eqref{e2} gives $$d_p(v_1, v_2) \leq d_p(v_1,v_3)^p + d_p(v_3,v_2)^p,$$ thus satisfying the triangle inequality. Therefore, $d_p$ is a metric.
+	
+	What follows is a solution to part (ii). Since $d_X$ and $d_Y$ are metrics $$\max\left\{ d_X(v_1,v_2), d_Y(v_1,v_2)\right\} \geq 0.$$ And since $d_X(v_1,v_2), d_Y(v_1,v_2) = 0$ if and only if $v_1 = v_2$, the same must be true for $d_{max}(v_1,v_2)$. Thus, $d_{max}$ satisfies positive definiteness.
+	
+	Consider $d_{\max}(v_2,v_1)$. But the symmetry property of $d_X$ and $d_Y$
+	\[\begin{split}
+		d_{\max}(v_2,v_1) &= \max\left\{ d_X(v_2,v_1), d_Y(v_2,v_1)\right\}\\
+		&=\max\left\{ d_X(v_1,v_2), d_Y(v_1,v_2)\right\}\\
+		&= d_{\max}(v_1,v_2).
+	\end{split}\] Therefore, $d_{\max}$ satisfies the symmetry property.
+	
+	Using the triangle property on $d_X$ and $d_Y$ gives $$d_{\max}(v_1,v_2) \leq \max\left\{\left ( d_X(v_1,v_3) + d_X(v_3,v_2) \right ), \left ( d_Y(v_1,v_3) + d_Y(v_3,v_2)\right ) \right \}.$$ Notice that 
+	\[\begin{split}
+		d_X(v_1,v_3) + d_X(v_3,v_2) &\leq \max\{d_X(v_1,v_3), d_Y(v_1,v_3)\} + d_X(v_3,v_2)\\
+		&\leq \max\{d_X(v_1,v_3), d_Y(v_1,v_3)\} + \max\{d_X(v_3,v_2), d_Y(v_3,v_2)\}\\
+		&= d_{\max}(v_1,v_3) + d_{\max}(v_3,v_2)
+	\end{split}\] The same is also true for the sum $d_Y(v_1,v_3) + d_Y(v_3,v_2)$. Thus, 
+	$$ \max\left\{\left ( d_X(v_1,v_3) + d_X(v_3,v_2) \right ), \left ( d_Y(v_1,v_3) + d_Y(v_3,v_2)\right ) \right \} \leq d_{\max}(v_1,v_3) + d_{\max}(v_3,v_2),$$ and $$
+	d_{\max}(v_1,v_2) \leq d_{\max}(v_1,v_3) + d_{\max}(v_3,v_2).$$ Therefore, $d_{\max}$ satisfies the triangle property and is a metric. 
+	
+	What follows is a counterexample to the proposed metric in part (iii). Let $v_1 = (1,1)$ and $v_2 = $
+	 
+\end{solution}
+\newpage
+
+
+
+%
+%
+%\begin{prob}{2}  % `prob' starts the (custom made, above) problem
+%			%  and the 
+%Is there a constant $C>0$ such that, for any $f \in L^1(\R_+) \cap L^7(\R_+)$,
+%\[
+%	\|f\|_{L^1\cap L^7} \leq C \|f\|_{L^2}?
+%\]
+%If the answer is yes, prove it.  If the answer is no, establish this by finding a sequence $f_n \in L^1\cap L^7$ such that $\|f_n\|_{L^1 \cap L^7} \geq n \|f_n\|_2$ for each $n$.
+%\end{prob}
+%%Uncomment the lines below to solve the problem
+%%\begin{solution}
+%%This is a very elegant solution.
+%%\end{solution}
+%%\newpage
+
+
+
+\begin{prob}{2}  % `prob' starts the (custom made, above) problem
+			%  and the 
+Fix a metric space $(X,d)$.  Show that if $U_1, U_2, \dots$ are open subsets of $X$ then so is
+\[
+	\bigcup_{i=1}^\infty U_i = \{ u \in X : \text{ there exists } i\in\N \text{ such that } u \in U_i\}.
+\]
+\end{prob}
+%Uncomment the lines below to solve the problem
+\begin{solution}
+	Fix any $$ x \in \bigcup_{i=1}^\infty U_i.$$ By the definition of union, there exists some $i_x$ such that $x\in U_{i_x}$. Since each $U_i$ is open, there exists $B_{r_x}(x)$ where $B_{r_x}(x) \subset U_{i_x}$. Because $$U_{i_x} \subset \bigcup_{i=1}^\infty U_i,$$ it must be true that $$B_{r_x}(x) \subset \bigcup_{i=1}^\infty U_i.$$ Since the choice of $x$ was arbitrary, the intersection of an arbitrary number of open sets is open. 
+\end{solution}
+\newpage
+
+
+
+
+\begin{prob}{3}  % `prob' starts the (custom made, above) problem
+			%  and the 
+Let $(X, d)$ be a metric space where $X$ is nonempty and $d$ is the discrete metric.
+\begin{enumerate}[(i)]
+	
+	\item Classify all continuous functions $f: \R \to X$ (you can take $\R$ to have the Euclidean metric).
+	
+	\item Classify all continuous functions $f: X \to \R$.
+	
+\end{enumerate}
+\end{prob}
+%Uncomment the lines below to solve the problem
+\begin{solution}
+	Let $f: \R \to X$ be continuous and let $\epsilon = 1$. Fix $x_0 \in \R$. By definition there exists some $\delta > 0$ such that whenever $|x-x_0| < \delta$ for some other $x\in \R$, $d_{disc}(f(x),f(x_0)) < 1$. However, this implies that $f(x) = f(x_0)$. Since the choice of $x_0$ was arbitrary, $f$ must be the constant function.
+	
+	Let $f: X \to \R$ be continuous. Fix $x_0 \in \R$ and consider when $|f(x) - f(x_0)| < \epsilon$ for some $\epsilon > 0$. By the definition of continuity, there must be some $\delta > 0$ such that $|f(x) - f(x_0)| < \epsilon$ whenever $d_{disc}(x,x_0) < \delta$. This is clearly true for the case when $x = x_0$, but when $x\not=x_0$, $d_{disc}(x,x_0) = 1$. Therefore, whenever $|f(x) - f(x_0)| < \epsilon$ and $x \not=x_0$,  $d_{disc}(x,x_0) = 1$. Thus $\delta > 1$ in order to satisfy the definition of continuity. But since $d_{disc}(x,x_0) = 1$ for all $x \not= x_0$, $|f(x) - f(x_0)| < \epsilon$ for all $x \in X$. 
+	
+\end{solution}
+\newpage
+
+
+
+\begin{prob}{4} % `prob' starts the (custom made, above) problem
+			%  and the 
+Fix any non-negative function $K \in L_\prel^1(\R)$.  Define a function
+\[
+	T: L_\prel^1([0,1]) \to L_\prel^1([0,1])
+\]
+by, for every $f \in L_\prel^1([0,1])$,
+\[
+	(Tf)(x) = \int_0^1 K(x-y) f(y) dy.
+\]
+\begin{enumerate}[(i)]
+	\item Show that $T$ is well-defined (i.e. $Tf \in L_\prel^1([0,1])$ whenever $f\in L_{\rm prel}^1([0,1])$).  Note: you can exchange the order of integration freely in this problem.  We will justify this later in the course.
+	
+	Also, you may find it helpful to show that if $f\in L^1_{\rm prel}$, there are nonnegative $f_+, f_- \in L^1_{\rm prel}$ such that $f = f_+ - f_-$.
+	
+	\item Show that $T$ is continuous.  
+	\item Is $T$ uniformly continuous?
+\end{enumerate}
+\end{prob}
+%Uncomment the lines below to solve the problem
+\begin{solution}
+ 	We begin proving $Tf\in L_\prel^1([0,1])$ by first showing that $Tf$ is bounded. Let $f\in L_{\rm prel}^1([0,1])$. By definition of the $L_\prel^1([0,1])$ norm, 
+ 	\[\begin{split}
+ 		||(Tf)(x)||_{L_\prel^1([0,1])} &= \int_{0}^{1}\left |\int_{0}^{1}K(x-y)f(y)dy\right |dx\\
+ 		&= \int_{0}^{1} \int_{0}^{1} |K(x-y)f(y) |dydx\\
+ 		&\leq \int_{0}^{1} \int_{0}^{1} |K(x-y)||f(y)|dydx\\
+ 		&=\int_{0}^{1} |f(y)|\int_{0}^{1} |K(x-y)|dxdy\\
+ 		&\leq \int_{0}^{1} |f(y)|\int_{-\infty}^{\infty} |K(x-y)|dxdy.
+ 	\end{split}\] 
+ 	Since $K \in L_\prel^1(\R)$, there exists some $K \in R$ such that $$\int_{-\infty}^{\infty}|K(x)|dx \leq K.$$ Thus,
+ 	\[\begin{split}
+ 		\int_{0}^{1} |f(y)|\int_{-\infty}^{\infty} |K(x-y)|dxdy \leq K \int_{0}^{1} |f(y)|dy.
+ 	\end{split}\] And since, $f \in L_\prel^1([0,1])$, there exists some $F \in R$ such that $$\int_{0}^{1} |f(y)|dy \leq F.$$ Thereby, $$||(Tf)(x)||_{L_\prel^1([0,1])} \leq KF,$$ and $Tf$ must be bounded. 
+ 	
+ 	To show that $Tf$ is continuous, fix any $\epsilon > 0$ and $x_0 \in \R$. For some other $x\in \R$,
+ 	\[\begin{split}
+ 		|Tf(x)-Tf(x_0)| &= \left | \int_{0}^{1} K(x-y)f(y)dy - \int_{0}^{1} K(x_0-y)f(y)dy \right |\\
+ 		& = \left | \int_{0}^{1} \left (K(x-y) - K(x_0-y) \right ) f(y) dy \right |\\
+ 		&\leq \int_{0}^{1} \left | \left (K(x-y) - K(x_0-y) \right ) \right | |f(y)| dy.
+ 	\end{split}\]
+ 	Since $K \in L_\prel^1(\R)$, $K$ must be continuous. Thus for $F$ as defined earlier, there must exist some $\delta > 0$ such that $|x-x_0| < \delta$ implies $|K(x) - K(x_0)| < \sfrac{\epsilon}{F}$. Notice that
+ 	\[\begin{split}
+ 		|x-x_0| &= |x - y + y - x_0|\\
+ 		&= |(x - y) - (x_0-y)|,
+ 	\end{split}\] and let $|x-x_0| < \delta$. Then,
+ 	\[\begin{split}
+ 		|Tf(x)-Tf(x_0)| &\leq \frac{\epsilon}{F} \int_{0}^{1}  |f(y)| dy\\
+ 		&\leq \frac{\epsilon}{F} (F)\\
+ 		& = \epsilon.
+ 	\end{split}\]
+ 	Because the choice of $f$ was arbitrary, $Tf$ is continuous. Consequently, $Tf \in L_\prel^1([0,1])$.
+ 	
+ 	To show that $T$ is continuous, fix any $\epsilon > 0$, and let $f\in L_{\rm prel}^1([0,1])$. Let $g\in L_{\rm prel}^1([0,1])$ such that $||f-g||_{L_\prel^1([0,1])} < \sfrac{\epsilon}{K}$ where $K$ is the same value defined above. Then,
+ 	\[\begin{split}
+ 		||Tf(x)-Tg(x)||_{L_\prel^1([0,1])} &= \int_{0}^{1} \left | \int_{0}^{1} K(x-y)f(y)dy - \int_{0}^{1} K(x-y)g(y)dy \right | dx \\
+ 		&= \int_{0}^{1} \left | \int_{0}^{1} K(x-y)(f(y) - g(y) ) dy \right | dx \\
+ 		&\leq \int_{0}^{1} \int_{0}^{1} |K(x-y)||(f(y) - g(y))| dy dx.
+ 	\end{split}\]
+ 	Using the same value for $K$ defined above,
+ 	\[\begin{split}
+ 		||Tf(x)-Tg(x)||_{L_\prel^1([0,1])} &\leq K \int_{0}^{1}|(f(y) - g(y))| dy\\
+ 		&= K ||f-g||_{L_\prel^1([0,1])}.
+	\end{split}\]
+	But by assumption,
+	\[\begin{split}
+		||Tf(x)-Tg(x)||_{L_\prel^1([0,1])} &\leq K \frac{\epsilon}{K}\\
+		&= \epsilon.
+	\end{split}\]
+	Since the choice of $f$ was arbitrary, $T$ is continuous.
+	
+	Since the value of $\delta$ only depends on $K$, $T$ and not on the choice of $f$ or $g$, $T$ is uniformly continuous.
+\end{solution}
+\newpage
+
+
+
+
+%
+%\begin{prob}{5} % `prob' starts the (custom made, above) problem
+%			%  and the 
+%Show that H\"older's inequality is sharp in the following sense: given $f \in L^1([a,b])$ and $\eps>0$, there is $g_\eps \in L^\infty([a,b])$ such that
+%\[\tag{$*$}
+%	\int_a^b f(x) g_\eps(x) dx
+%		\geq \|g_\eps\|_\infty (\|f\|_1  - \eps).
+%\]
+%Similarly, show that for every\footnote{You may assume that $g \in C([a,b])$.} $g \in L^\infty([a,b])$ and $\eps>0$, there is $f_\eps \in L^1([a,b])$ such that
+%\[\tag{$**$}
+%	\int_a^b f_\eps(x) g(x) dx
+%		\geq \|f_\eps\|_1 (\|g\|_\infty - \eps).
+%\]
+%Do we need the $\eps$ in both ($*$) and ($**$)?  That is, given any $f\in L^1$ is there a $g_{\eps=0}\in L^\infty$ so that ($*$) holds with $\eps=0$ and, given any $g\in L^\infty$, is there a $f_{\eps=0} \in L^1$ such that ($**$) holds with $\eps=0$?
+%\end{prob}
+%%Uncomment the lines below to solve the problem
+%%\begin{solution}
+%%This is a very elegant solution.
+%%\end{solution}
+%%\newpage
+
+
+
+
+
+\begin{prob}{5} % `prob' starts the (custom made, above) problem
+			%  and the 
+Fix a metric space $(X,d)$.  Suppose that $x_0 \in X$ and $r>0$.  Show that $B_r(x_0)$ is an open set.
+\end{prob}
+%Uncomment the lines below to solve the problem
+\begin{solution}
+	The first case is if $B_r(x_0)$ is empty. But the empty set is open.
+	
+	The second case is when $B_r(x_0)$ is nonempty. Let $y\in B_r(x_0)$. Thus, $d(x_0,y) < r$. There must then exist $s \in \R$ such that $$d(x_0,y) + s < r.$$ Let $B_s(y)$ be the open ball centered at $y$ with radius $s$. Notice that $B_s(y)$ cannot be empty as $y\in B_s(y)$ by definition. Let $z \in B_s(y)$ be any element of $B_s(y)$. Thus, $d(y,z) < s$. Therefore, $d(x_0,y) + d(y,z) < r$, and by the triangle inequality $$d(x_0,z) \leq d(x_0,y) + d(y,z) < r.$$ Therefore, $z\in B_r(x_0)$. Since the choice of $z$ was arbitrary, $B_r(x_0)$ is open. 
+	
+	 
+\end{solution}
+\newpage
+
+
+
+
+
+\begin{prob}{6} % `prob' starts the (custom made, above) problem
+			%  and the 
+Fix any constant $\theta \in \R$ and let $x_n$ be a convergent sequence.  Show that
+\[
+	\lim_{n\to\infty} \theta x_n = \theta \lim_{n\to\infty}x_n.
+\]
+\end{prob}
+%Uncomment the lines below to solve the problem
+\begin{solution}
+	Since the sequence $(x_n)$ converges, let $$ \lim_{n\to\infty} x_n = x.$$ Then for any $x_n$, consider $|\theta x_n - \theta x| = |\theta||x_n - x|$. Since, $(x_n)$ converges to $x$, there exists some $N \in \N$ such that whenever $n \geq N$, $$|x_n - x| < \frac{\epsilon}{|\theta |}.$$ Thus, for $n\geq N$, 
+	\[\begin{split}
+		|\theta x_n - \theta x| &< |\theta|\frac{\epsilon}{|\theta |}\\
+		&= \epsilon.
+	\end{split}\]
+	Therefore, $\theta x$ is the limit of the sequence $(\theta x_n)$.
+\end{solution}
+\newpage
+
+
+
+
+\begin{prob}{7} % `prob' starts the (custom made, above) problem
+			%  and the 
+Suppose that $(X,d)$ is a metric space and $f, g: (X,d) \to \R$ are continuous functions.
+\begin{enumerate}[(i)]
+	\item Show that $f+g$ is continuous.
+	
+	\item Show that $f\cdot g$ is continuous.  
+	
+	\item If $f,g$ are uniformly continuous, show that $f+g$ is uniformly continuous.
+	
+	\item If $f,g$ are uniformly continuous, is $f\cdot g$ uniformly continuous?
+	
+\end{enumerate}
+\end{prob}
+%Uncomment the lines below to solve the problem
+\begin{solution}
+	To show that $f+g$ is continuous, fix some $\epsilon > 0$ and some $x_0 \in X$. For some other $x\in X$, 
+	\[\begin{split}
+		|(f(x) + g(x)) - (f(x_0) + g(x_0))| &=  | (f(x) - f(x_0)) + (g(x) - g(x_0))|\\
+		& \leq | f(x) - f(x_0) |+|g(x) - g(x_0)|.
+	\end{split}\]
+	Since both $f$ and $g$ are continuous, there exists $\delta_f$ and $\delta_g$ such that $|f(x) - f(x_0)| < \sfrac{\epsilon}{2}$ whenever $d(x,x_0) < \delta_f$ and $|g(x) - g(x_0)| < \sfrac{\epsilon}{2}$ whenever $d(x,x_0) < \delta_g$. Let $\delta = \max\{\delta_f, \delta_g\}$. Then, $d(x,x_0) < \delta$ implies 
+	\[\begin{split}
+		|(f(x) + g(x)) - (f(x_0) + g(x_0))| & \leq | f(x) - f(x_0) |+|g(x) - g(x_0)|\\
+		&<\frac{\epsilon}{2} + \frac{\epsilon}{2}\\
+		&= \epsilon.
+	\end{split}\]
+	Since the choice of $x_0$ was arbitrary, $f+g$ is continuous.
+	
+	For part (ii), fix some $\epsilon > 0$ and some $x_0 \in X$. For some other $x\in X$, 
+	\[\begin{split}
+		|f(x)g(x) - f(x_0)g(x_0)| &=  |f(x)g(x) - f(x_0)g(x) + f(x_0)g(x) + f(x_0)g(x_0)|\\
+		&= |g(x)(f(x) - f(x_0)) + f(x_0)(g(x) - g(x_0))|\\
+		&\leq |g(x)(f(x) - f(x_0))| + |f(x_0)(g(x) - g(x_0))|\\
+		&\leq |g(x)||f(x) - f(x_0)| + |f(x_0)||g(x) - g(x_0)|.
+	\end{split}\]
+	Since both $f$ and $g$ are continuous, there exists $\delta_f$ and $\delta_g$ such that $|f(x) - f(x_0)| < \epsilon_f$ whenever $d(x,x_0) < \delta_f$, and $|g(x) - g(x_0)| < \epsilon_f$ whenever $d(x,x_0) < \delta_g$. Let $\delta = \max\{\delta_f, \delta_g\}$ and let $d(x,x_0) < \delta$. To get an upper bound for $|g(x)|$, let $A = (x_0 - \delta, x_0+\delta)$ be an interval and let $$G = \sup_{x \in A}|g(x)|.$$ Let $$\epsilon_f = \frac{\epsilon}{2G} \quad \text{and} \quad \epsilon_g = \frac{\epsilon}{2|f(x_0)|}.$$ Then $d(x,x_0) < \delta$ implies,
+	\[\begin{split}
+		|f(x)g(x) - f(x_0)g(x_0)| & \leq G\frac{\epsilon}{2G} + |f(x_0)|\frac{\epsilon}{2|f(x_0)|}\\
+		& = \frac{\epsilon}{2} + \frac{\epsilon}{2}\\
+		&= \epsilon.
+	\end{split}\]
+	Since the choice of $x_0$ was arbitrary, $f\cdot g$ is continuous.
+	
+	For part (iii), fix any $\epsilon > 0$ and any $x,y \in X$. Then, 
+	\[\begin{split}
+		|(f(x) + g(x)) - (f(y) + g(y))| &=  | (f(x) - f(y)) + (g(x) - g(y))|\\
+		& \leq | f(x) - f(y) |+|g(x) - g(y)|.
+	\end{split}\]
+	Since both $f$ and $g$ are uniformly continuous, there exists $\delta_f$ and $\delta_g$ such that $|f(x) - f(y)| < \sfrac{\epsilon}{2}$ whenever $d(x,y) < \delta_f$ and $|g(x) - g(y)| < \sfrac{\epsilon}{2}$ whenever $d(x,y) < \delta_g$. Let $\delta = \max\{\delta_f, \delta_g\}$. Then, $d(x,x_0) < \delta$ implies 
+	\[\begin{split}
+		|(f(x) + g(x)) - (f(x_0) + g(x_0))| & \leq | f(x) - f(x_0) |+|g(x) - g(x_0)|\\
+		&<\frac{\epsilon}{2} + \frac{\epsilon}{2}\\
+		&= \epsilon.
+	\end{split}\]
+	Since the choice of $x$ and $y$ was arbitrary, and in neither case does the choice of $\delta$ depend on $x$ or $y$, $f+g$ is uniformly continuous.
+	
+	To show that $f\cdot g$ is not necessarily uniformly continuous, let $f,g = x$. We demonstrated in class that this function is uniformly continuous. Assume for contradiction that $f\cdot g = x^2$ is uniformly continuous. Then there exists $\delta$ such that for any $x,y \in X$ where $d(x,y) < \delta$, $|x^2-y^2| < 1$. Let $y = x + \sfrac{\delta}{2}$. Then,
+	\[\begin{split}
+		1&> |x^2-y^2| \\
+		&=|x^2-(x + \sfrac{\delta}{2})^2|\\
+		&= |x^2-(x^2 + x\delta + \sfrac{\delta^2}{4})|\\
+		&=|x\delta +\sfrac{\delta^2}{4}|.
+	\end{split}\]
+	Since $\delta$ is positive, this value is maximized when $x$ is positive. In this case, the absolute value can be dropped and rearranging for $x$ yields $$\frac{1-\sfrac{\delta^2}{4}}{\delta} > x.$$ This inequality sets an upper bound for $x$, and therefore does not apply for all $x$ and $y$ in $\R$. Therefore, $f\cdot g$ is not uniformly continuous, despite $f$ and $g$ both being uniformly continuous.
+	
+\end{solution}
+%\newpage
+
+
+
+
+\end{document}
