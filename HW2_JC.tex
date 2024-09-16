@@ -87,7 +87,7 @@ Each of these is well-defined in that it is finite for any $v_1,v_2\in X\cap Y$.
 \end{prob}
 %Uncomment the lines below to solve the problem
 \begin{solution}
-	What follows is a solution to part (i). By construction, $d_p(v_1,v_2)$ can only be zero if both $d_X(v_1,v_2)$ and $d_Y(v_1,v_2)$ are zero, and will be positive if both $d_X(v_1,v_2)$ and $d_Y(v_1,v_2)$. Since both $d_X$ and $d_Y$ are metrics, they satisfy positive definiteness property. Thus, $d_p$ also satisfies positive definiteness.
+	What follows is a proof of the metric in part (i). By construction, $d_p(v_1,v_2)$ can only be zero if both $d_X(v_1,v_2)$ and $d_Y(v_1,v_2)$ are zero, and will be positive if both $d_X(v_1,v_2)$ and $d_Y(v_1,v_2)$ are positive. Since both $d_X$ and $d_Y$ are metrics, they satisfy positive definiteness property. Thus, $d_p$ also satisfies positive definiteness.
 	
 	Since both $d_X$ and $d_Y$ are metrics, $$d_X(v_1,v_2) = d_X(v_2,v_1) \quad \text{ and } \quad d_Y(v_1,v_2) = d_Y(v_2,v_1).$$ Therefore, 
 	\[\begin{split}
@@ -98,14 +98,10 @@ Each of these is well-defined in that it is finite for any $v_1,v_2\in X\cap Y$.
 	Thus, $d_p$ satisfies the symmetry property.
 	
 	
-	Using the triangle inequality on the metrics $d_X$ and $d_Y$ yields 
+	Using the triangle inequality on the metrics $d_X$ and $d_Y$ in the definition for $d_p$ yields 
 	\begin{equation}\label{e1}
-	d_p(v_1,v_2) \leq \left ( [d_X(v_1,v_3) + d_X(v_3,v_2)]^p + [d_Y(v_1,v_3) + d_Y(v_3,v_2)]^p \right )^(\sfrac{1}{p}).
+	d_p(v_1,v_2) \leq \left ( [d_X(v_1,v_3) + d_X(v_3,v_2)]^p + [d_Y(v_1,v_3) + d_Y(v_3,v_2)]^p \right )^{\sfrac{1}{p}}.
 	\end{equation}
-	Using the definition 
-	\[\begin{split}
-		|x|_p = \left(|x_1|^p + \cdots + |x_N|^p\right)^{\sfrac{1}{p}},
-	\end{split}\] notice that for $\bar v = (d_X(v_1, v_2), d_Y(v_1,v_2))$, $$d_p(v_1,v_2) = |\bar z|_p.$$
 	Let vectors $\bar x$ and $\bar y$ be two vectors defined by $$\bar x = (d_X(v_1,v_3), d_Y(v_1,v_3)) \quad \text{ and } \quad \bar y = (d_X(v_3,v_2), d_Y(v_3,v_2)).$$ Applying our definition for $|x|_p$ gives
 	\[\begin{split}
 		|\bar x +\bar y|_p = \left(|x_1 + y_1|^p + |x_2+y_2|^p\right)^{\sfrac{1}{p}}.
@@ -114,7 +110,7 @@ Each of these is well-defined in that it is finite for any $v_1,v_2\in X\cap Y$.
 	\[\begin{split}
 		|\bar x +\bar y|_p = \left(|d_X(v_1,v_3) + d_X(v_3,v_2)|^p + |d_Y(v_1,v_3)+d_Y(v_3,v_2)|^p\right)^{\sfrac{1}{p}}.
 	\end{split}\]
-	Substituting in with \eqref{e1} gives 
+	The right hand side is half of the inequality in \eqref{e1}, and thus 
 	\begin{equation}\label{e2}
 	d_p(v_1, v_2) \leq |\bar x +\bar y|_p.
 	\end{equation}
@@ -129,7 +125,7 @@ Each of these is well-defined in that it is finite for any $v_1,v_2\in X\cap Y$.
 	\end{split}\]
 	Combining with \eqref{e2} gives $$d_p(v_1, v_2) \leq d_p(v_1,v_3)^p + d_p(v_3,v_2)^p,$$ thus satisfying the triangle inequality. Therefore, $d_p$ is a metric.
 	
-	What follows is a solution to part (ii). Since $d_X$ and $d_Y$ are metrics $$\max\left\{ d_X(v_1,v_2), d_Y(v_1,v_2)\right\} \geq 0.$$ And since $d_X(v_1,v_2), d_Y(v_1,v_2) = 0$ if and only if $v_1 = v_2$, the same must be true for $d_{max}(v_1,v_2)$. Thus, $d_{max}$ satisfies positive definiteness.
+	What follows is a proof of the metric in part (ii). Since $d_X$ and $d_Y$ are metrics $$\max\left\{ d_X(v_1,v_2), d_Y(v_1,v_2)\right\} \geq 0.$$ And since $d_X(v_1,v_2), d_Y(v_1,v_2) = 0$ if and only if $v_1 = v_2$, the same must be true for $d_{max}(v_1,v_2)$. Thus, $d_{max}$ satisfies positive definiteness.
 	
 	Consider $d_{\max}(v_2,v_1)$. But the symmetry property of $d_X$ and $d_Y$
 	\[\begin{split}
@@ -181,7 +177,7 @@ Fix a metric space $(X,d)$.  Show that if $U_1, U_2, \dots$ are open subsets of 
 \end{prob}
 %Uncomment the lines below to solve the problem
 \begin{solution}
-	Fix any $$ x \in \bigcup_{i=1}^\infty U_i.$$ By the definition of union, there exists some $i_x$ such that $x\in U_{i_x}$. Since each $U_i$ is open, there exists $B_{r_x}(x)$ where $B_{r_x}(x) \subset U_{i_x}$. Because $$U_{i_x} \subset \bigcup_{i=1}^\infty U_i,$$ it must be true that $$B_{r_x}(x) \subset \bigcup_{i=1}^\infty U_i.$$ Since the choice of $x$ was arbitrary, the intersection of an arbitrary number of open sets is open. 
+	Fix any $$ x \in \bigcup_{i=1}^\infty U_i.$$ By the definition of union, there exists some $i_x$ such that $x\in U_{i_x}$. Since each $U_i$ is open, there exists $B_{r_x}(x)$ where $B_{r_x}(x) \subset U_{i_x}$. Because $$U_{i_x} \subset \bigcup_{i=1}^\infty U_i,$$ it must be true that $$B_{r_x}(x) \subset \bigcup_{i=1}^\infty U_i.$$ Since the choice of $x$ was arbitrary, the union of an arbitrary number of open sets is open. 
 \end{solution}
 \newpage
 
@@ -201,9 +197,9 @@ Let $(X, d)$ be a metric space where $X$ is nonempty and $d$ is the discrete met
 \end{prob}
 %Uncomment the lines below to solve the problem
 \begin{solution}
-	Let $f: \R \to X$ be continuous and let $\epsilon = 1$. Fix $x_0 \in \R$. By definition there exists some $\delta > 0$ such that whenever $|x-x_0| < \delta$ for some other $x\in \R$, $d_{disc}(f(x),f(x_0)) < 1$. However, this implies that $f(x) = f(x_0)$. Since the choice of $x_0$ was arbitrary, $f$ must be the constant function.
+	Let $f: \R \to X$ be continuous and let $\epsilon = 1$. Fix $x_0 \in \R$. By definition there exists some $\delta > 0$ such that for any $x\in \R$ that satisfies $|x-x_0| < \delta$, $d_{disc}(f(x),f(x_0)) < 1$. This must mean that $d_{disc}(f(x),f(x_0)) = 0$, which requires that $f(x) = f(x_0)$. Therefore, for $f$ to be continuous at $x_0$, it must be constant in the region around $f(x_0)$. Since the choice of $x_0$ was arbitrary, $f$ must be the constant function.
 	
-	Let $f: X \to \R$ be continuous. Fix $x_0 \in \R$ and consider when $|f(x) - f(x_0)| < \epsilon$ for some $\epsilon > 0$. By the definition of continuity, there must be some $\delta > 0$ such that $|f(x) - f(x_0)| < \epsilon$ whenever $d_{disc}(x,x_0) < \delta$. This is clearly true for the case when $x = x_0$, but when $x\not=x_0$, $d_{disc}(x,x_0) = 1$. Therefore, whenever $|f(x) - f(x_0)| < \epsilon$ and $x \not=x_0$,  $d_{disc}(x,x_0) = 1$. Thus $\delta > 1$ in order to satisfy the definition of continuity. But since $d_{disc}(x,x_0) = 1$ for all $x \not= x_0$, $|f(x) - f(x_0)| < \epsilon$ for all $x \in X$. 
+	Let $f: X \to \R$ be continuous. Fix $x_0 \in \R$ and consider when $|f(x) - f(x_0)| < \epsilon$ for some $\epsilon > 0$. By the definition of continuity, there must be some $\delta > 0$ such that $|f(x) - f(x_0)| < \epsilon$ whenever $d_{disc}(x,x_0) < \delta$. This is clearly true for the case when $x = x_0$, but when $x\not=x_0$, $d_{disc}(x,x_0) = 1$. Therefore, whenever $|f(x) - f(x_0)| < \epsilon$ and $x \not=x_0$,  $d_{disc}(x,x_0) = 1$. Thus $\delta > 1$ in order to satisfy the definition of continuity. But since $d_{disc}(x,x_0) = 1$ for all $x \not= x_0$, $|f(x) - f(x_0)| < \epsilon$ for all $x \in X$. Since the choice of $x_0$ was arbitrary, every function is continuous everywhere. 
 	
 \end{solution}
 \newpage
@@ -233,8 +229,22 @@ by, for every $f \in L_\prel^1([0,1])$,
 \begin{solution}
  	We begin proving $Tf\in L_\prel^1([0,1])$ by first showing that $Tf$ is bounded. Let $f\in L_{\rm prel}^1([0,1])$. By definition of the $L_\prel^1([0,1])$ norm, 
  	\[\begin{split}
- 		||(Tf)(x)||_{L_\prel^1([0,1])} &= \int_{0}^{1}\left |\int_{0}^{1}K(x-y)f(y)dy\right |dx\\
- 		&= \int_{0}^{1} \int_{0}^{1} |K(x-y)f(y) |dydx\\
+ 		||(Tf)(x)||_{L_\prel^1([0,1])} = \int_{0}^{1}\left |\int_{0}^{1}K(x-y)f(y)dy\right |dx
+ 	\end{split}\]
+ 	We proceed by showing that for any $f\in L_\prel^1(\R)$, $$ \left |\int_{-\infty}^{\infty}f(x)dx \right | \leq \int_{-\infty}^{\infty}|f(x)|dx.$$ Let $f = f_+ + f_-$ where $$f_+(x) = \{f(x):f(x) \geq 0\} \quad \text{and} \quad f_-(x) = \{f(x):f(x) < 0\}.$$ Notice that $f = f_+ - (-f_-)$. Taking the absolute value of the integral of both sides gives $$\left |\int_{-\infty}^{\infty} f(x)dx \right | = \left |\int_{-\infty}^{\infty}f_+(x)dx - \int_{-\infty}^{\infty}(-f_-(x))dx \right |.$$ Since, $f \in  L_\prel^1(\R)$, these integrals must be finite and the triangle inequality gives $$\left |\int_{-\infty}^{\infty} f(x)dx \right | \leq \left |\int_{-\infty}^{\infty}f_+(x)dx \right | + \left | \int_{-\infty}^{\infty}(-f_-(x))dx \right |.$$ Since both $f_+(x)$ and $-f_-(x)$ are necessarily positive, the absolute value signs can be dropped giving 
+ 	\[\begin{split}
+ 		\left |\int_{-\infty}^{\infty} f(x)dx \right | &\leq \int_{-\infty}^{\infty}f_+(x)dx + \int_{-\infty}^{\infty}(-f_-(x))dx\\
+ 		&= \int_{-\infty}^{\infty}(f_+(x)-f_-(x))dx
+ 	\end{split}\]
+ 	Notice that 
+ 	\[f_+(x)-f_-(x) =
+ 	\begin{cases}
+ 		f(x) \quad &\text{ if } f(x)\geq 0\\
+ 		-f(x) \quad &\text{ if } f(x) <0,
+ 	\end{cases} \]
+ 	which is the same as the definition of $|f(x)|$. Thus, $$\left |\int_{-\infty}^{\infty} f(x)dx \right | \leq \int_{-\infty}^{\infty}|f(x)|dx.$$ Continuing with the evaluation of $||(Tf)(x)||_{L_\prel^1([0,1])}$ gives
+ 	\[\begin{split}
+ 		||(Tf)(x)||_{L_\prel^1([0,1])} &\leq  \int_{0}^{1} \int_{0}^{1} |K(x-y)f(y) |dydx\\
  		&\leq \int_{0}^{1} \int_{0}^{1} |K(x-y)||f(y)|dydx\\
  		&=\int_{0}^{1} |f(y)|\int_{0}^{1} |K(x-y)|dxdy\\
  		&\leq \int_{0}^{1} |f(y)|\int_{-\infty}^{\infty} |K(x-y)|dxdy.
@@ -339,12 +349,14 @@ Fix any constant $\theta \in \R$ and let $x_n$ be a convergent sequence.  Show t
 \end{prob}
 %Uncomment the lines below to solve the problem
 \begin{solution}
-	Since the sequence $(x_n)$ converges, let $$ \lim_{n\to\infty} x_n = x.$$ Then for any $x_n$, consider $|\theta x_n - \theta x| = |\theta||x_n - x|$. Since, $(x_n)$ converges to $x$, there exists some $N \in \N$ such that whenever $n \geq N$, $$|x_n - x| < \frac{\epsilon}{|\theta |}.$$ Thus, for $n\geq N$, 
+	Since the sequence $(x_n)$ converges, let $$ \lim_{n\to\infty} x_n = x.$$ Then for any $x_n$, consider $|\theta x_n - \theta x| = |\theta||x_n - x|$. Consider the case when $\theta \not= 0$. Since, $(x_n)$ converges to $x$, there exists some $N \in \N$ such that whenever $n \geq N$, $$|x_n - x| < \frac{\epsilon}{|\theta |}.$$ Thus, for $n\geq N$, 
 	\[\begin{split}
 		|\theta x_n - \theta x| &< |\theta|\frac{\epsilon}{|\theta |}\\
 		&= \epsilon.
 	\end{split}\]
 	Therefore, $\theta x$ is the limit of the sequence $(\theta x_n)$.
+	
+	If $\theta = 0$, then each term in the sequence $(\theta x_n)$ is $0$, and sequence thus converges to $0$. Because $(x_n)$ converges $$\theta \lim_{n\to\infty}x_n = 0.$$ Since both terms are $0$, the equality holds. 
 \end{solution}
 \newpage
 
